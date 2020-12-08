@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from "react";
+import CreateurPersonnage from "./containers/CreateurPersonnage/createurPersonnage";
+import ListePersonnages from "./containers/listesPersonnages/listePersonnages"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+    state = {
+        refrech : false
+    }
+
+    handleRefrech = () => {
+        this.setState(oldState => {
+            return {
+                refrech : !oldState.refrech
+            }
+        }
+        )
+    }
+    render(){
+        return(
+            <>
+                <CreateurPersonnage refrech={this.handleRefrech}/>
+                <ListePersonnages refrech={this.state.refrech}/>
+            </>
+        )
+    }
 }
 
 export default App;
